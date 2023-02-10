@@ -19,6 +19,8 @@ using namespace std;
 using namespace std::this_thread; // sleep_for, sleep_until
 using namespace std::chrono; // nanoseconds, system_clock, seconds
 
+Point center(100, 100);
+
 void centerCircle(Point* arr, int* direction) {
 	Point a1(1, 1);
 	Point a2(-1, 1);
@@ -69,7 +71,7 @@ void setupgame(int inputkey=0, int counter=0) {
 	rectangle(image, r2, Scalar(0, 255, 0), 10, 8, 0);
 
 
-	Point center(100, 100);
+	
 	
 	Point adder(1, 1);
 	
