@@ -19,30 +19,12 @@ using namespace std;
 using namespace std::this_thread; // sleep_for, sleep_until
 using namespace std::chrono; // nanoseconds, system_clock, seconds
 
-Point center(100, 100);
+Point center(100, 200);
+int direction[2] = { 1,1 };
 
 void centerCircle(Point* arr, int* direction) {
-	Point a1(1, 1);
-	Point a2(-1, 1);
-	Point a3(1, -1);
-	Point a4(-1, -1);
-	if (*direction == 1) {
-		*arr = a1;
-		
-	}
-	else if (*direction == 2) {
-		*arr = a2;
-		
-	}
-	else if (*direction == 3) {
-		*arr = a3;
-		
-	}
-	else if (*direction == 4) {
-		*arr = a4;
-		
-	}
-
+	Point aa(*direction, *(direction + 1));
+	*arr = aa;
 
 }
 
@@ -52,7 +34,7 @@ void setupgame(int inputkey=0, int counter=0) {
 
 	srand(time(0));
 
-	int direction = 1;
+	
 
 
 
@@ -64,7 +46,8 @@ void setupgame(int inputkey=0, int counter=0) {
 
 	rectangle(image, r, Scalar(255, 0, 0), 10, 8, 0);
 
-	Rect r2 = Rect(20+ inputkey, 300, 50, 10);
+	//Rect r2 = Rect(20+ inputkey, 300, 50, 10);
+	Rect r2 = Rect(20,20 + inputkey, 10, 50);
 
 
 
@@ -76,13 +59,19 @@ void setupgame(int inputkey=0, int counter=0) {
 	Point adder(1, 1);
 	
 
-	if (counter == 0) {
-		Point center( 100, 100);//Declaring the center point
-	}
-	else  {
-		int cent[2] = { 100,100 };
-		centerCircle(&adder, &direction);
+
+	if (counter != 0) {
+		
+		
+		if (center.y == 20 || center.y == 300) {
+			*(direction + 1) *= -1;
+		}else if (center.x == 20 || center.x == 300) {
+			*(direction) *= -1;
+		}
+		centerCircle(&adder, direction);
 		center = center + adder;
+		
+		
 		
 		
 
@@ -98,7 +87,7 @@ void setupgame(int inputkey=0, int counter=0) {
 
 	imshow("Display Window", image);
 	
-	sleep_until(system_clock::now() + seconds(1));
+	sleep_until(system_clock::now() + milliseconds(2));
 
 	
 	
@@ -115,7 +104,7 @@ int main(int argc, char* argv[])
 	
 
 
-	while (i < 10) {
+	while (i < 9000) {
 		
 		incc *= (-1);
 		setupgame(incc,i);
