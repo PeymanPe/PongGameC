@@ -21,6 +21,7 @@ using namespace std::chrono; // nanoseconds, system_clock, seconds
 
 Point center(100, 200);
 int direction[2] = { 1,1 };
+int incc = 10;
 
 void centerCircle(Point* arr, int* direction) {
 	Point aa(*direction, *(direction + 1));
@@ -99,33 +100,41 @@ void setupgame(int inputkey=0, int counter=0) {
 int main(int argc, char* argv[])
 {
 	int ch;
-	int incc=10;
+	
 	int i = 0;
 	
 
 
 	while (i < 9000) {
+
 		
-		incc *= (-1);
+		//incc *= (-1);
+		
+		char c = waitKey(100);
+		if (c== 'w') {
+			incc += 10;
+		}
+		if (c == 's') {
+			incc += -10;
+		}
 		setupgame(incc,i);
-		waitKey(100);
 	
 		i++;
 	}
 	
-		switch (ch = _getch()) {
-		case KEY_RIGHT:
-			incc = 10;
-			break;
+		//switch (ch = _getch()) {
+		//case KEY_RIGHT:
+		//	incc = 10;
+		//	break;
 
 
-		case KEY_LEFT:
-			incc = -10;
-			break;
+		//case KEY_LEFT:
+		//	incc = -10;
+		//	break;
 
 
-		}
-	setupgame(incc);
+		//}
+	//setupgame(incc);
 
 
 	
